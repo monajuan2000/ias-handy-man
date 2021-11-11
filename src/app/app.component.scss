@@ -1,0 +1,41 @@
+.container__title {
+  margin-left: 8px;
+  font-family: 'italic';
+}
+
+.container__sidenav {
+  flex: 1;
+  justify-content: center;
+}
+.container__icon{
+  color: white;
+}
+.p-fixed .container__sidenav {
+  flex: 1 0 auto;
+}
+.container__main {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.p-fixed .container__toolbar {
+  position: fixed;
+  z-index: 2;
+}
+.container__sidenav__icon {
+  margin-left: 10px;
+  color: white;
+  font-family: 'italic';
+}
+.container__img{
+  width: 200px;
+}
+@media (min-width: 430px) {
+  mat-sidenav {
+    width: 150px;
+  }
+}

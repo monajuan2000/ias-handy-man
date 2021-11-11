@@ -1,0 +1,27 @@
+<mat-toolbar class="title">
+  Agregar técnico <mat-icon class="icon">add</mat-icon></mat-toolbar
+>
+<form>
+  <mat-card-content class="container__card">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+      <div fxFlex="100%" fxFlex.xs="100%">
+        <mat-form-field appearance="fill" class="input__form">
+          <mat-label class="container__label">Cédula</mat-label>
+          <input matInput />
+          <mat-icon matSuffix>badge</mat-icon>
+        </mat-form-field>
+      </div>
+      <div fxFlex="100%" fxFlex.xs="100%">
+        <mat-form-field appearance="fill" class="input__form">
+          <mat-label class="container__label">Nombre</mat-label>
+          <input matInput class="container__label" />
+          <mat-icon matSuffix>badge</mat-icon>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card-content>
+  <div class="buttons">
+    <button mat-stroked-button type="submit" class="button">Enviar</button>
+    <button mat-stroked-button type="reset" class="button">Limpiar</button>
+  </div>
+</form>
