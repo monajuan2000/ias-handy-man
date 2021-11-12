@@ -19,8 +19,8 @@ export class ReportService{
    create(dto:any){
     return this.http.post<Technical>(`${environment.apiUrl}${this.path}`, dto)
    }
-   list(dto:any){
-     return this.http.post<Array<Technical>>(`${environment.apiUrl}${this.path}`, dto)
+   list(){
+     return this.http.post<Array<Technical>>(`${environment.apiUrl}${this.path}`,{message:'hellow'})
    }
    findById(dto:any){
     return this.http.post<Technical>(`${environment.apiUrl}${this.path}`, dto)

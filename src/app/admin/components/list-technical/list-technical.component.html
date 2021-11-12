@@ -6,7 +6,7 @@
       <table mat-table [dataSource]="dataSource" class="table">
         <ng-container matColumnDef="CC">
           <th mat-header-cell *matHeaderCellDef class="column"><strong>Cédula</strong></th>
-          <td mat-cell *matCellDef="let element">{{ element.CC }}</td>
+          <td mat-cell *matCellDef="let element">{{ element.cc}}</td>
         </ng-container>
   
         <ng-container matColumnDef="name">
@@ -14,23 +14,23 @@
           <td mat-cell *matCellDef="let element" id="name_3">{{ element.name }}</td>
         </ng-container>
   
-        <ng-container matColumnDef="delete">
+        <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef class="column" id="name_2"><strong>Acciones</strong></th>
           <td mat-cell *matCellDef="let element">
             <button
               mat-icon-button
               (click)="requestService(element.name, element.CC)"
             >
-              <mat-icon id="name_3">{{ element.icon.edit }}</mat-icon>
+              <mat-icon id="name_3">edit</mat-icon>
             </button>
             <button
               mat-icon-button
               (click)="requestService(element.name, element.CC)"
             >
-              <mat-icon id="name_3" class="delete">{{ element.icon.delete }}</mat-icon>
+              <mat-icon id="name_3" class="delete">delete</mat-icon>
             </button>
           </td>
-        </ng-container>
+        </ng-container> 
         
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

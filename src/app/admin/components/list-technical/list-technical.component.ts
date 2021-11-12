@@ -1,49 +1,27 @@
+import { CreateService } from './../../services/create.service';
 import { ReportService } from './../../../service-report/services/report.service';
 import { Component, OnInit } from '@angular/core';
-export interface PeriodicElement {
-  name: string;
-  CC: number;
-  icon: any;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  { CC: 17644789, name: 'Juan Esteban Moná', icon:{delete:'delete',edit:'edit'} },
-  
-  
 
-];
+
 @Component({
   selector: 'app-list-technical',
   templateUrl: './list-technical.component.html',
   styleUrls: ['./list-technical.component.scss']
 })
 export class ListTechnicalComponent implements OnInit {
-  displayedColumns: string[] = ['CC', 'name', 'delete'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['CC', 'name', 'actions'];
+  public dataSource:any;
+  public elemento:any;
 
-  constructor(private service: ReportService) { }
+  constructor(private service: CreateService) { }
 
   ngOnInit(): void {
-
+    this.service.list().subscribe(data =>{
+      this.dataSource = data
+    })
   }
-  requestService(name: string,cc: number){
+  requestService(name: string,cc: string){
     this.service.technical.name = name
     this.service.technical.cc = cc
   }

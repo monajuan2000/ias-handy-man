@@ -41,7 +41,7 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  requestService(name: string,cc: number){
+  requestService(name: string,cc: string){
     this.service.technical.name = name
     this.service.technical.cc = cc
   }

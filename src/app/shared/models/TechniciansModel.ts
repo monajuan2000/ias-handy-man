@@ -1,11 +1,11 @@
 export class Technical{
     id:any;
-    cc:number;
+    cc:string;
     name:string;
 
     constructor(){
         this.id=null;
-        this.cc = 0;
+        this.cc = '';
         this.name = ''
     }
 }
