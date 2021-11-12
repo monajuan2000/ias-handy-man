@@ -1,0 +1,5 @@
+INSERT INTO technicians (cc, name) VALUES ('1', 'Juan Esteban Mona')
+INSERT INTO technicians (cc, name) VALUES ('2', 'Santiago Bermudez')
+INSERT INTO technicians (cc, name) VALUES ('3', 'Miguel Hernandez')
+INSERT INTO technicians (cc, name) VALUES ('9', 'Laura Navarro')
+INSERT INTO technicians (cc, name) VALUES ('8', 'Ernesto Arboleda')
