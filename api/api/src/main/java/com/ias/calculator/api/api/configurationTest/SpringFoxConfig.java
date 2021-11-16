@@ -3,7 +3,6 @@ package com.ias.calculator.api.api.configurationTest;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.RequestHandlerKey;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -17,7 +16,7 @@ public class SpringFoxConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.ias.calculator.api.api.controllers"))
-                .paths(PathSelectors.ant("/api/v1/*")).build();
+                .paths(PathSelectors.ant("/api/v1/technical/*")).build();
          }
 
 }

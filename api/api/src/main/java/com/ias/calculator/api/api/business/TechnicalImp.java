@@ -33,4 +33,9 @@ public class TechnicalImp implements TechnicalService {
     public TechnicalEntity update(TechnicalEntity technicalEntity) {
         return this.technicalRepository.save(technicalEntity);
     }
+
+    @Override
+    public void delete(Long id) {
+        this.technicalRepository.deleteById(id);
+    }
 }

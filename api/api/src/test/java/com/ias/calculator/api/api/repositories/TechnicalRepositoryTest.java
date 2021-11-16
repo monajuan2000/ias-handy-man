@@ -27,7 +27,7 @@ class TechnicalRepositoryTest {
         assertAll(
                 () -> assertEquals(5, technical.size()),
                 () -> assertTrue(c),
-                () -> assertEquals("9", technical1.getCc())
+                () -> assertEquals("535785", technical1.getCc())
         );
     }
 
@@ -37,8 +37,8 @@ class TechnicalRepositoryTest {
         Optional<TechnicalEntity> technicalEntity = technicalRepository.findById(1L);
         assertAll(
                 () -> assertTrue(technicalEntity.isPresent()),
-                () -> assertEquals("Juan Esteban Mona", technicalEntity.orElseThrow().getName()),
-                () -> assertEquals("1", technicalEntity.orElseThrow().getCc())
+                () -> assertEquals("Santiago", technicalEntity.orElseThrow().getName()),
+                () -> assertEquals("1000406213", technicalEntity.orElseThrow().getCc())
         );
     }
 
