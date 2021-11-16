@@ -1,3 +1,4 @@
+import { Technical } from './../../../shared/models/TechniciansModel';
 import { CreateService } from './../../services/create.service';
 import { ReportService } from './../../../service-report/services/report.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,12 +18,20 @@ export class ListTechnicalComponent implements OnInit {
   constructor(private service: CreateService) { }
 
   ngOnInit(): void {
-    this.service.list().subscribe(data =>{
+   this.listRequest()
+  }
+  listRequest(){
+     this.service.list().subscribe(data =>{
       this.dataSource = data
+      console.log(data)
     })
   }
-  requestService(name: string,cc: string){
-    this.service.technical.name = name
-    this.service.technical.cc = cc
+  update(element:Technical){
+    this.service.technical = element
+    this.service.state = true
+  }
+  delete(id:any){
+    this.service.delete(id).subscribe(data => console.log("delete"))
+    window.location.reload()
   }
 }

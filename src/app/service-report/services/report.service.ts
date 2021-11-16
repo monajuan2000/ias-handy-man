@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ReportService{
-   path = '/technical'
+   path = '/technical/find-all'
    technical:Technical
    report:Report
 

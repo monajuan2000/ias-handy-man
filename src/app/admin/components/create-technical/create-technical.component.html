@@ -7,21 +7,22 @@
       <div fxFlex="100%" fxFlex.xs="100%">
         <mat-form-field appearance="fill" class="input__form">
           <mat-label class="container__label">Cédula</mat-label>
-          <input matInput />
+          <input matInput  [(ngModel)]="technical.cc" name="cc"/>
           <mat-icon matSuffix>badge</mat-icon>
         </mat-form-field>
       </div>
       <div fxFlex="100%" fxFlex.xs="100%">
         <mat-form-field appearance="fill" class="input__form">
           <mat-label class="container__label">Nombre</mat-label>
-          <input matInput class="container__label" />
+          <input matInput class="container__label"  [(ngModel)]="technical.name" name="name"/>
           <mat-icon matSuffix>badge</mat-icon>
         </mat-form-field>
       </div>
     </div>
   </mat-card-content>
-  <div class="buttons">
-    <button mat-stroked-button type="submit" class="button" >Enviar</button>
-    <button mat-stroked-button type="reset" class="button">Limpiar</button>
-  </div>
 </form>
+  <div class="buttons">
+    <button mat-stroked-button type="submit" class="button" *ngIf="!state" (click)="submit()">Enviar</button>
+    <button mat-stroked-button type="submit" class="button" *ngIf="state" (click)="update()">Actualizar</button>
+    <button mat-stroked-button type="reset" class="button" (click)="clean()">Limpiar</button>
+  </div>
