@@ -3,7 +3,6 @@ package com.ias.calculator.api.api.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Table(name = "technicians")
@@ -13,12 +12,6 @@ public class TechnicalEntity implements Serializable{
     private Long id;
     private String cc;
     private String name;
-    // @ManyToMany
-    // @JoinTable(name = "technical_reports"
-    //             ,joinColumns=@JoinColumn(name="technical_id")
-    //             ,inverseJoinColumns =@JoinColumn(name="report_id"))
-    // private Set<ReportEntity> reportEntity;
-
     public TechnicalEntity(){
 
     }

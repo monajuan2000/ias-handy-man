@@ -1,1 +1,2 @@
-INSERT INTO technicians (cc, name) VALUES ('1000406213', 'Santiago')
+INSERT INTO technicians (cc, name) VALUES ('1000406213', 'Juan Esteban Mona')
+INSERT INTO reports (id_technical,order_report, date_report, start_hour, final_hour) VALUES (1,'23445', '12-05-2020','1:30','2:30')

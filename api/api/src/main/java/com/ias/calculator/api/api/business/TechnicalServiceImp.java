@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class TechnicalImp implements TechnicalService {
+public class TechnicalServiceImp implements TechnicalService {
 
     @Autowired
     private TechnicalRepository technicalRepository;
@@ -31,7 +31,7 @@ public class TechnicalImp implements TechnicalService {
 
     @Override
     public TechnicalEntity update(TechnicalEntity technicalEntity) {
-        return this.technicalRepository.save(technicalEntity);
+        return this.technicalRepository.saveAndFlush(technicalEntity);
     }
 
     @Override
