@@ -23,7 +23,6 @@ export class ListTechnicalComponent implements OnInit {
   listRequest(){
      this.service.list().subscribe(data =>{
       this.dataSource = data
-      console.log(data)
     })
   }
   update(element:Technical){
@@ -31,7 +30,7 @@ export class ListTechnicalComponent implements OnInit {
     this.service.state = true
   }
   delete(id:any){
-    this.service.delete(id).subscribe(data => console.log("delete"))
+    this.service.delete(id).subscribe()
     window.location.reload()
   }
 }

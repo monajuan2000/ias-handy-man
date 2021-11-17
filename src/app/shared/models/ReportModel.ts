@@ -1,14 +1,16 @@
 
 export class Report{
     id:any;
-    order:number;
+    idTechnical:any;
+    order:string;
     date:string;
     startHour:string;
     finalHour:string
 
     constructor(){
         this.id = null;
-        this.order = 0
+        this.idTechnical = null;
+        this.order = ''
         this.date = ''
         this.startHour = ''
         this.finalHour = ''

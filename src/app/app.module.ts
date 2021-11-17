@@ -13,6 +13,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import {MatInputModule} from '@angular/material/input';
     ServiceReportModule,
     MatCardModule,
     MatInputModule,
-    
+    SweetAlert2Module 
   ],
   providers: [],
   bootstrap: [AppComponent]

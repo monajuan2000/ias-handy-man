@@ -1,0 +1,22 @@
+<div fxLayout="row wrap" fxLayoutGap="16px grid" class="container__view__cards">
+  <div fxFlex="100%" fxFlex.xs="100%" class="card__one">
+    <img src="/assets/images/ICON_LOGIN.png" id="images" />
+  </div>
+  <div fxFlex="51%" fxFlex.xs="100%" class="card__one">
+    <mat-form-field class="input__form" appearance="fill">
+      <mat-label class="input">Nombre</mat-label>
+      <input type="text" autocomplete="off" matInput placeholder="Escriba su nombre" [(ngModel)]="session.cc" name="cc"/>
+      <mat-icon matSuffix>people</mat-icon>
+    </mat-form-field>
+  </div>
+  <div fxFlex="51%" fxFlex.xs="100%" class="card__one">
+    <mat-form-field class="input__form" appearance="fill">
+      <mat-label class="input">Cédula</mat-label>
+      <input type="password" autocomplete="off" matInput placeholder="Escriba su cédula" [(ngModel)]="session.name" name="name"/>
+      <mat-icon matSuffix>lock_open</mat-icon>
+    </mat-form-field>
+  </div>
+  <div fxFlex="51%" fxFlex.xs="100%" class="card__one">
+       <button mat-button class="button" [routerLink]="route" >LOGIN</button>
+  </div>
+</div>

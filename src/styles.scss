@@ -25,14 +25,15 @@ body {
 }
 
 .bg-background-general{
-  background-image: url("assets/images/HANDY_MAN_BACKGROUND.jpg");
+  background-image: url("/assets/images/HANDY_MAN_BACKGROUND.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 .bg-background{
-  background-image: url("/assets/images/TECHINAL_SERVICE.png");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+    background-image: url("/assets/images/TECHNICIANS_LOGIN_BACKGROUND.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;   
+
 }
 .container{
   height: 100%;
@@ -74,4 +75,12 @@ body {
   position: sticky;
   top: 0;
   z-index: 1;
+}
+#swal2-html-container{
+  color: black;
+  font-style: italic;
+  
+}
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: rgba(0,0,0,.10) !important;
 }

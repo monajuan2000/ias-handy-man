@@ -26,7 +26,7 @@ export class CreateService {
     return this.http.post<Technical>(`${environment.apiUrl}${this.path}`, id)
    }
    update(dto: Technical) {
-    return this.http.post<Technical>(`${environment.apiUrl}${this.path}/update`, dto);
+    return this.http.put<Technical>(`${environment.apiUrl}${this.path}/update`, dto);
   }
   delete(id:any) {
     return this.http.delete<Technical>(`${environment.apiUrl}${this.path}/delete/${id}`);

@@ -1,3 +1,4 @@
+import { Technical } from './../../../shared/models/TechniciansModel';
 import { ReportService } from './../../services/report.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
@@ -15,19 +16,19 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.listRequest();
+   
   }
   listRequest(){
     this.service.list().subscribe(data =>{
      this.dataSource = data
-     console.log(data)
    })
  }
   update():void{
     
   }
-  requestService(name: string,cc: string){
-    this.service.technical.name = name
-    this.service.technical.cc = cc
+  requestService(technical:Technical){
+    this.service.technical.name = technical.name
+    this.service.technical.cc = technical.cc
+    this.service.report.idTechnical = technical.id
   }
-
 }

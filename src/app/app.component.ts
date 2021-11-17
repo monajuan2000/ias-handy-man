@@ -15,7 +15,7 @@ export class AppComponent {
     { name: 'Home', route: '/', icon: 'home' },
     { name: 'Admin', route: 'admin/technical', icon: 'settings' },
     { name: 'Report', route: 'service-report/report', icon: 'settings' },
-    
+    { name: 'Calculator', route: 'calculator/login-technicians', icon: 'manage_accounts' },
   ];
 
   private _mobileQueryListener: () => void;

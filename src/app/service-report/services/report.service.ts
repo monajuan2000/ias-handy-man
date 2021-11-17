@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ReportService{
-   path = '/technical/find-all'
+   path = '/reports'
    technical:Technical
    report:Report
 
@@ -17,15 +17,18 @@ export class ReportService{
     this.report = new Report();
    }
    create(dto:any){
-    return this.http.post<Technical>(`${environment.apiUrl}${this.path}`, dto)
+    return this.http.post<Report>(`${environment.apiUrl}${this.path}/save`, dto)
    }
    list(){
-     return this.http.post<Array<Technical>>(`${environment.apiUrl}${this.path}`,{message:'hellow'})
+     return this.http.post<Array<Technical>>(`${environment.apiUrl}/technical/find-all`,{message:'hellow'})
    }
+   listReports(){
+    return this.http.post<Array<Report>>(`${environment.apiUrl}${this.path}/find-all`,{message:'hellow'})
+  }
    findById(dto:any){
-    return this.http.post<Technical>(`${environment.apiUrl}${this.path}`, dto)
+    return this.http.post<Report>(`${environment.apiUrl}${this.path}`, dto)
    }
    update(dto: any) {
-    return this.http.put<Technical>(`${environment.apiUrl}${this.path}`, dto);
+    return this.http.put<Report>(`${environment.apiUrl}${this.path}`, dto);
   }
 }
