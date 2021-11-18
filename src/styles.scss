@@ -20,6 +20,9 @@ body {
 .bg-gray {
   background: #929496;
 }
+.bg-black{
+  background-color: black;
+}
 .bg-gray-transparent {
   background-color: rgba(146, 148, 150, 0.5);
 }
@@ -83,4 +86,7 @@ body {
 }
 .mat-form-field-appearance-fill .mat-form-field-flex {
   background-color: rgba(0,0,0,.10) !important;
+}
+.swal2-styled.swal2-confirm{
+  background-color: black !important;
 }

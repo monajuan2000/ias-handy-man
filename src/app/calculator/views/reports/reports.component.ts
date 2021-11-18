@@ -1,3 +1,4 @@
+import { SessionService } from './../../services/session.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: SessionService) { }
 
   ngOnInit(): void {
+  }
+  get session(){
+    return this.service.session
   }
 
 }

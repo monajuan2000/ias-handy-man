@@ -4,19 +4,20 @@
   </div>
   <div fxFlex="51%" fxFlex.xs="100%" class="card__one">
     <mat-form-field class="input__form" appearance="fill">
-      <mat-label class="input">Nombre</mat-label>
-      <input type="text" autocomplete="off" matInput placeholder="Escriba su nombre" [(ngModel)]="session.cc" name="cc"/>
-      <mat-icon matSuffix>people</mat-icon>
+      <mat-label class="input">Semana del año</mat-label>
+      <input type="number" autocomplete="off" matInput placeholder="Escriba la semana del año" [(ngModel)]="session.semana" name="name"/>
+      <mat-icon matSuffix>event</mat-icon>
     </mat-form-field>
   </div>
   <div fxFlex="51%" fxFlex.xs="100%" class="card__one">
     <mat-form-field class="input__form" appearance="fill">
       <mat-label class="input">Cédula</mat-label>
-      <input type="password" autocomplete="off" matInput placeholder="Escriba su cédula" [(ngModel)]="session.name" name="name"/>
+      <input type="password" autocomplete="off" matInput placeholder="Escriba su cédula" [(ngModel)]="session.cc" name="cc"/>
       <mat-icon matSuffix>lock_open</mat-icon>
     </mat-form-field>
   </div>
   <div fxFlex="51%" fxFlex.xs="100%" class="card__one">
-       <button mat-button class="button" [routerLink]="route" >LOGIN</button>
+       <button mat-button class="button" [routerLink]="route" (click)="loggear()" *ngIf="state">LOGIN</button>
+       <button mat-button class="button" [routerLink]="route" (click)="cont()" *ngIf="!state">LOGIN</button>
   </div>
 </div>

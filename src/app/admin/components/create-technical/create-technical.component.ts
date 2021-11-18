@@ -23,6 +23,7 @@ export class CreateTechnicalComponent implements OnInit {
   }
   clean(): void {
     this.service.technical = new Technical();
+    this.service.state = false
   }
   submit(): void {
     let msn = this.validate();
@@ -34,7 +35,7 @@ export class CreateTechnicalComponent implements OnInit {
         'NOTIFICATION_SUCCESS.jpg'
       )
       this.service.technical = new Technical();
-      window.location.reload()
+      setTimeout("window.location.reload()",2000)
     }else{
          this.notification.notification(
            'Error',

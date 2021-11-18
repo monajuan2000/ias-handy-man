@@ -1,0 +1,18 @@
+.container__table__data {
+  max-height: 385px;
+  overflow: auto;
+  margin-top: 5px;
+  width: 95%;
+  display: flex;
+  text-align: center;
+}
+.table {
+  width: 95%;
+}
+.column {
+  color: black;
+  font-size: 15px;
+}
+th.mat-header-cell {
+  text-align: center;
+}

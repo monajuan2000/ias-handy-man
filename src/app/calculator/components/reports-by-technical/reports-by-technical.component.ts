@@ -1,4 +1,6 @@
+import { SessionService } from './../../services/session.service';
 import { Component, OnInit } from '@angular/core';
+import { DataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-reports-by-technical',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reports-by-technical.component.scss']
 })
 export class ReportsByTechnicalComponent implements OnInit {
+  displayedColumns: string[] = ['order', 'date', 'hourS','hourF'];
 
-  constructor() { }
+  dataSource: any;
 
-  ngOnInit(): void {
+  constructor(private service: SessionService) {
+    this.dataSource = this.service.listT
   }
 
+  ngOnInit(): void {
+    this.dataSource = this.service.listT
+  }
+  get session() {
+    return this.service.session;
+  }
 }
