@@ -10,4 +10,5 @@ public interface TechnicalService {
     TechnicalEntity save(TechnicalEntity technicalEntity);
     TechnicalEntity update(TechnicalEntity technicalEntity);
     void delete(Long id);
+    TechnicalEntity findByCC(String cc);
 }

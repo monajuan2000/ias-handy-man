@@ -37,5 +37,10 @@ public class ReportController {
     public void delete(@PathVariable Long id){
         reportService.delete(id);
     }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping(value = "/api/v1/reports/findByTechnical/{id}")
+    public List<ReportEntity> findByTechnical(@PathVariable Long id){
+        return reportService.findByTechnical(id);
+    }
     
 }

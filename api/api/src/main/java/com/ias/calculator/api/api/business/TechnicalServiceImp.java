@@ -38,4 +38,9 @@ public class TechnicalServiceImp implements TechnicalService {
     public void delete(Long id) {
         this.technicalRepository.deleteById(id);
     }
+
+    @Override
+    public TechnicalEntity findByCC(String cc) {
+        return this.technicalRepository.findByCC(cc).orElseThrow();
+    }
 }

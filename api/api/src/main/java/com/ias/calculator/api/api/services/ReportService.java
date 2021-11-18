@@ -3,7 +3,6 @@ package com.ias.calculator.api.api.services;
 import java.util.List;
 
 import com.ias.calculator.api.api.entities.ReportEntity;
-import com.ias.calculator.api.api.entities.TechnicalEntity;
 
 public interface ReportService {
 
@@ -12,4 +11,5 @@ public interface ReportService {
     ReportEntity save(ReportEntity technicalEntity);
     ReportEntity update(ReportEntity technicalEntity);
     void delete(Long id);
+    List<ReportEntity> findByTechnical(Long id);
 }

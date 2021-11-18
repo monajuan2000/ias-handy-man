@@ -3,7 +3,6 @@ package com.ias.calculator.api.api.business;
 import java.util.List;
 
 import com.ias.calculator.api.api.entities.ReportEntity;
-import com.ias.calculator.api.api.entities.TechnicalEntity;
 import com.ias.calculator.api.api.repositories.ReportRepository;
 import com.ias.calculator.api.api.services.ReportService;
 
@@ -40,6 +39,13 @@ public class ReportServiceImp implements ReportService{
     public void delete(Long id) {
         this.reportRepository.deleteById(id);
     }
+
+    @Override
+    public List<ReportEntity> findByTechnical(Long id) {
+        return reportRepository.findByTechnical(id);
+    }
+
+    
 
     
     

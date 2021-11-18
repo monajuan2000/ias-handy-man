@@ -68,5 +68,15 @@ class TechnicalRepositoryTest {
                 () -> assertEquals("4562", technicalRepository.findById(1L).orElseThrow().getCc())
         );
     }
+
+    @Test
+    @DisplayName("Test findByCC")
+    void testFindByCC() {
+        Optional<TechnicalEntity> technicalEntity = technicalRepository.findByCC("1000406213");
+        assertAll(
+            () -> {assertTrue(technicalEntity.isPresent());},
+            () -> {assertEquals(1L, technicalEntity.orElseThrow().getId());}
+        );
+    }
 }
 
