@@ -1,24 +1,27 @@
-<mat-toolbar class="title bg-gray">
-    INFORMACIÓN IMPORTANTE.
-</mat-toolbar>
+<mat-toolbar class="title bg-gray"> INFORMACIÓN IMPORTANTE. </mat-toolbar>
 <mat-card-content class="container__expansion">
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <strong id="title">Mostrar información</strong> 
-        </mat-expansion-panel-header>
-      
-        <ng-template matExpansionPanelContent>
-          <strong>1. Horas normales:</strong> Horas trabajadas de lunes a sábado entre las 7:00 AM y las 8:00 PM.<br/> 
-          <strong>2. Horas nocturnas:</strong> Horas trabajadas de lunes a sábado entre las 8:00 PM y las 7:00 AM.<br/> 
-          <strong>3. Horas Dominicales:</strong> Horas trabajadas el día Domingo.<br/> 
-          <strong>4. Horas Normales Extra</strong>: Horas trabajadas de lunes a sábado entre las 7:00.<br/> 
-          AM y las 8:00 PM después de que el técnico ya ha trabajado 48 horas esa 
-          semana.<br/> 
-          <strong>5. Horas nocturnas Extra:</strong> Horas trabajadas de lunes a sábado entre las 8:00 
-          PM y las 7:00 AM después de que el técnico ya ha trabajado 48 horas esa 
-          semana.<br/> 
-          <strong>6.  Horas Dominicales Extra:</strong> Horas trabajadas el día Domingo después de que 
-          el técnico ya ha trabajado 48 horas esa semana.           
-        </ng-template>
-      </mat-expansion-panel>
+  <mat-expansion-panel [disabled]="!session.expansion">
+    <mat-expansion-panel-header (click)="expansion()">
+      <strong id="title">Mostrar información</strong>
+    </mat-expansion-panel-header>
+    <ng-template matExpansionPanelContent>
+      <div id="expansion">
+        <strong>1. Horas normales:</strong> Horas trabajadas de lunes a sábado
+        entre las 7:00 AM y las 8:00 PM.<br />
+        <strong>2. Horas nocturnas:</strong> Horas trabajadas de lunes a sábado
+        entre las 8:00 PM y las 7:00 AM.<br />
+        <strong>3. Horas Dominicales:</strong> Horas trabajadas el día
+        Domingo.<br />
+        <strong>4. Horas Normales Extra</strong>: Horas trabajadas de lunes a
+        sábado entre las 7:00.<br />
+        AM y las 8:00 PM después de que el técnico ya ha trabajado 48 horas esa
+        semana.<br />
+        <strong>5. Horas nocturnas Extra:</strong> Horas trabajadas de lunes a
+        sábado entre las 8:00 PM y las 7:00 AM después de que el técnico ya ha
+        trabajado 48 horas esa semana.<br />
+        <strong>6. Horas Dominicales Extra:</strong> Horas trabajadas el día
+        Domingo después de que el técnico ya ha trabajado 48 horas esa semana.
+      </div>
+    </ng-template>
+  </mat-expansion-panel>
 </mat-card-content>

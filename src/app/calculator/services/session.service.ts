@@ -14,7 +14,7 @@ export class SessionService {
   technical:Technical
   listT: any
 
-  session = {id:0,cc:'',name:'', semana:'',state:true}
+  session = {id:0,cc:'',name:'', week:'',state:true, expansion:false}
   
 
   constructor(private http:HttpClient) { 

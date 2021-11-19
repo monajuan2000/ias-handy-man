@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   validate(): string {
     let msn = '';
     msn += this.service.session.cc == '' ? 'Debe ingresar cédula,' : '',
-      msn += this.service.session.semana == '' ? ' Debe ingresar la semana del año' : ''
+      msn += this.service.session.week == '' ? ' Debe ingresar la semana del año' : ''
     return msn;
   }
   loggear(): void {

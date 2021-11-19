@@ -1,14 +1,70 @@
-<mat-toolbar class="title bg-gray">
-    Calcular horas del técnico
-</mat-toolbar>
+<mat-toolbar class="title bg-gray"> Calcular horas del técnico </mat-toolbar>
 <mat-card-content class="container__expansion">
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <strong id="title">Calcular</strong> 
-        </mat-expansion-panel-header>
-      
-        <ng-template matExpansionPanelContent>
-                  
-        </ng-template>
-      </mat-expansion-panel>
+  <mat-expansion-panel [disabled]="session.expansion">
+    <mat-expansion-panel-header (click)="expansion()" >
+      <strong id="title">Calcular número de horas trabajadas semana {{session.week}}</strong>
+    </mat-expansion-panel-header >
+    <ng-template  matExpansionPanelContent>
+      <div id="expansion">
+      <div
+        fxLayout="row wrap"
+        fxLayoutGap="16px grid"
+        class="container__view__cards"
+      >
+        <div fxFlex="25%" fxFlex.xs="100%" >
+          <button mat-button class="button">Calcular</button>
+        </div>
+        <div fxFlex="75%" fxFlex.xs="100%" >
+          <mat-form-field class="input__form" appearance="fill">
+            <mat-label class="input">Total horas trabajadas</mat-label>
+            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <mat-icon matSuffix>timer</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxFlex="33.33%" fxFlex.xs="100%" >
+          <mat-form-field class="input__form" appearance="fill">
+            <mat-label class="input">horas normales</mat-label>
+            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <mat-icon matSuffix>timer</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxFlex="33.33%" fxFlex.xs="100%" >
+          <mat-form-field class="input__form" appearance="fill">
+            <mat-label class="input">horas nocturnas</mat-label>
+            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <mat-icon matSuffix>timer</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxFlex="33.33%" fxFlex.xs="100%" >
+          <mat-form-field class="input__form" appearance="fill">
+            <mat-label class="input">horas dominicales</mat-label>
+            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <mat-icon matSuffix>timer</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxFlex="33.33%" fxFlex.xs="100%" >
+          <mat-form-field class="input__form" appearance="fill">
+            <mat-label class="input">horas normales extra</mat-label>
+            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <mat-icon matSuffix>timer</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxFlex="33.33%" fxFlex.xs="100%" >
+          <mat-form-field class="input__form" appearance="fill">
+            <mat-label class="input">horas nocturnas extra</mat-label>
+            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <mat-icon matSuffix>timer</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxFlex="33.33%" fxFlex.xs="100%" >
+          <mat-form-field class="input__form" appearance="fill">
+            <mat-label class="input">horas dominicales extra</mat-label>
+            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <mat-icon matSuffix>timer</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    </ng-template>
+  </mat-expansion-panel>
 </mat-card-content>

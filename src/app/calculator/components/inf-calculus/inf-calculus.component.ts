@@ -1,3 +1,4 @@
+import { SessionService } from './../../services/session.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfCalculusComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:SessionService) { }
 
   ngOnInit(): void {
   }
-
+  get session(){
+    return this.service.session;
+  }
+  expansion(){
+   this.service.session.expansion = this.service.session.expansion ==false ? true : false
+  }
 }

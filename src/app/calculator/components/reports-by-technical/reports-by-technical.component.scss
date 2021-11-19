@@ -12,7 +12,14 @@
 .column {
   color: black;
   font-size: 15px;
+  
 }
 th.mat-header-cell {
   text-align: center;
+}
+@media (max-width:430px) {
+  th.mat-header-cell {
+    text-align: left;
+    font-size: 12px;
+  }
 }
