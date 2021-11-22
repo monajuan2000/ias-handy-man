@@ -16,7 +16,7 @@ public class SpringFoxConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.ias.calculator.api.api.controllers"))
-                .paths(PathSelectors.ant("/api/v1/reports/findByTechnical/*")).build();
+                .paths(PathSelectors.ant("/api/v1/reports/hours/{id}/{wk}")).build();
          }
 
 }

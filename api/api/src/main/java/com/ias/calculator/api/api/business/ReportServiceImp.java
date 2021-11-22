@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.ias.calculator.api.api.entities.ReportEntity;
 import com.ias.calculator.api.api.repositories.ReportRepository;
 import com.ias.calculator.api.api.services.ReportService;
@@ -21,6 +20,8 @@ public class ReportServiceImp implements ReportService {
 
     @Autowired
     private ReportRepository reportRepository;
+    private DateFormat dateFormatHour = new SimpleDateFormat("hh:mm");
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Override
     public List<ReportEntity> findAll() {
@@ -53,59 +54,72 @@ public class ReportServiceImp implements ReportService {
     }
 
     @Override
-    public Map<String, Long> numberOfHours(Long id, String wk) throws ParseException {
+    public Map<String, Float> numberOfHours(Long id, String wk) throws ParseException {
         List<ReportEntity> entities = reportRepository.findByTechnical(id);
-        Long totalHours = 0L;
-        Date date = null;
-        String week = "";
-        String day = "";
-        String h1 = "";
-        String h2 = "";
-        Date d1 = null;
-        Date d2 = null;
         Long NORMALHOURS = 0L;
         Long NIGHTHOURS = 0L;
         Long SUNDAYHOURS = 0L;
         Long NORMALHOURSEXTRA = 0L;
         Long NIGHTHOURSEXTRA = 0L;
         Long SUNDAYHOURSEXTRA = 0L;
-        HashMap<String, Long> map = new HashMap<String, Long>();
-
-        DateFormat dateFormatHour = new SimpleDateFormat("hh:mm");
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Long TOTALHOURS = 0L;
+        Long TOTALHOURSWEEK = 0L;
 
         for (ReportEntity element : entities) {
-            h1 = element.getStartHour();
-            h2 = element.getFinalHour();
-            d1 = dateFormatHour.parse(h1);
-            d2 = dateFormatHour.parse(h2);
-            totalHours += ((d2.getTime() - d1.getTime()) / (1000 * 60));
-            String f1 = element.getDate();
-            date = dateFormat.parse(f1);
-            week = new SimpleDateFormat("w").format(date);
-            day = new SimpleDateFormat("EE").format(date);
-
-            if(week == wk){
-               if(d1.getHours() >= 7 && d2.getHours()<=20 && day == "vie."){
-                    NORMALHOURS += ((d2.getTime() - d1.getTime()) / (1000 * 60));
-               }
+            Date d1 = this.dateFormatHour.parse(element.getStartHour());
+            Date d2 = this.dateFormatHour.parse(element.getFinalHour());
+            TOTALHOURS += ((d2.getTime() - d1.getTime()) / (1000 * 60));
+            Date date = this.dateFormat.parse(element.getDate());
+            String week = new SimpleDateFormat("w").format(date);
+            String day = new SimpleDateFormat("EE").format(date);
+            Long result = ((d2.getTime() - d1.getTime()) / (1000 * 60));
+            if (week.equals(wk)) {
+                if (TOTALHOURSWEEK < 2880L) {
+                    if (!day.equals("dom.")) {
+                        if (d1.getHours() >= 7 && d2.getHours() <= 20) {
+                            NORMALHOURS += result;
+                            TOTALHOURSWEEK += result;
+                        } else {
+                            NIGHTHOURS += result;
+                            TOTALHOURSWEEK += result;
+                        }
+                    } else {
+                        SUNDAYHOURS += result;
+                        TOTALHOURSWEEK += result;
+                    }
+                } else {
+                    if (!day.equals("dom.")) {
+                        if (d1.getHours() >= 7 && d2.getHours() <= 20) {
+                            NORMALHOURSEXTRA += result;
+                            TOTALHOURSWEEK += result;
+                        } else {
+                            NIGHTHOURSEXTRA += result;
+                            TOTALHOURSWEEK += result;
+                        }
+                    } else {
+                        SUNDAYHOURSEXTRA += result;
+                        TOTALHOURSWEEK += result;
+                    }
+                }
             }
-            
+
         }
-        map.put(TypeHour.NORMALHOURS.toString(), NORMALHOURS);
-        map.put(TypeHour.NIGHTHOURS.toString(), NIGHTHOURS);
-        map.put(TypeHour.SUNDAYHOURS.toString(), SUNDAYHOURS);
-        map.put(TypeHour.NORMALHOURSEXTRA.toString(), NORMALHOURSEXTRA);
-        map.put(TypeHour.NIGHTHOURSEXTRA.toString(), NIGHTHOURSEXTRA);
-        map.put(TypeHour.SUNDAYHOURSEXTRA.toString(), SUNDAYHOURSEXTRA);
-        return map;
+        return this.createMap(NORMALHOURS, NIGHTHOURS, SUNDAYHOURS, NORMALHOURSEXTRA, NIGHTHOURSEXTRA, SUNDAYHOURSEXTRA,
+                TOTALHOURS, TOTALHOURSWEEK);
     }
 
     @Override
-    public String dia() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = dateFormat.parse("2021-11-19");
-        return  new SimpleDateFormat("EEE").format(date);
+    public Map<String, Float> createMap(Long NORMALHOURS, Long NIGHTHOURS, Long SUNDAYHOURS, Long NORMALHOURSEXTRA,
+            Long NIGHTHOURSEXTRA, Long SUNDAYHOURSEXTRA, Long TOTALHOURS, Long TOTALHOURSWEEK) {
+        HashMap<String, Float> map = new HashMap<String, Float>();
+        map.put(TypeHour.NORMALHOURS.toString(), (float) (NORMALHOURS)/60);
+        map.put(TypeHour.NIGHTHOURS.toString(), (float) (NIGHTHOURS)/60);
+        map.put(TypeHour.SUNDAYHOURS.toString(), (float) (SUNDAYHOURS)/60);
+        map.put(TypeHour.NORMALHOURSEXTRA.toString(), (float) (NORMALHOURSEXTRA)/60);
+        map.put(TypeHour.NIGHTHOURSEXTRA.toString(), (float) (NIGHTHOURSEXTRA)/60);
+        map.put(TypeHour.SUNDAYHOURSEXTRA.toString(), (float) (SUNDAYHOURSEXTRA)/60);
+        map.put(TypeHour.TOTALHOURS.toString(), (float) (TOTALHOURS)/60);
+        map.put(TypeHour.TOTALHOURSWEEK.toString(), (float) (TOTALHOURSWEEK)/60);
+        return map;
     }
-
 }

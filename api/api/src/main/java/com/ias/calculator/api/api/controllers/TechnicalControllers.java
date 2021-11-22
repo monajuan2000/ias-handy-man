@@ -20,7 +20,7 @@ public class TechnicalControllers {
     private TechnicalService technicalService;
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping(value = "/api/v1/technical/find-all")
+    @GetMapping(value = "/api/v1/technical/find-all")
     public List<TechnicalEntity> findAll(){
         return technicalService.findAll();
     }

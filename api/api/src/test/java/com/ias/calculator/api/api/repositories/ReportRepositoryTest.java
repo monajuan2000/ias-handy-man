@@ -15,11 +15,9 @@ public class ReportRepositoryTest {
     @Autowired
     private ReportRepository reportRepository;
 
-
-
     @Test
     void testFindByTechnical() {
        List<ReportEntity> reports = this.reportRepository.findByTechnical(1L);
-       assertEquals(3, reports.size());
+       assertEquals(12, reports.size());
     }
 }

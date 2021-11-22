@@ -13,6 +13,7 @@ public interface ReportService {
     ReportEntity update(ReportEntity technicalEntity);
     void delete(Long id);
     List<ReportEntity> findByTechnical(Long id);
-    Map<String, Long> numberOfHours(Long id, String wk) throws ParseException;
-    String dia() throws ParseException;
+    Map<String, Float> numberOfHours(Long id, String wk) throws ParseException;
+    Map<String, Float> createMap(Long NORMALHOURS, Long NIGHTHOURS,Long SUNDAYHOURS, Long NORMALHOURSEXTRA,
+    Long NIGHTHOURSEXTRA, Long SUNDAYHOURSEXTRA, Long TOTALHOURS, Long TOTALHOURSWEEK);
 }
