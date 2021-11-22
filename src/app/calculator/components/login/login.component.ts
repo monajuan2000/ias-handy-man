@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
         }
         this.service.listT = this.service.list(this.session.id).subscribe(data => {
           this.service.listT = data
-          console.log(this.service.listT)
         })
         this.notification.notification(
           'success',

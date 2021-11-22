@@ -12,54 +12,61 @@
         class="container__view__cards"
       >
         <div fxFlex="25%" fxFlex.xs="100%" >
-          <button mat-button class="button">Calcular</button>
+          <button mat-button class="button" (click)="calculate()">Calcular</button>
         </div>
-        <div fxFlex="75%" fxFlex.xs="100%" >
+        <div fxFlex="37%" fxFlex.xs="100%" >
           <mat-form-field class="input__form" appearance="fill">
             <mat-label class="input">Total horas trabajadas</mat-label>
-            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <input type="number" disabled autocomplete="off" matInput value="0"  [(ngModel)]="hours.TOTALHOURS" name="TOTALHOURS"/>
+            <mat-icon matSuffix>timer</mat-icon>
+          </mat-form-field>
+        </div>
+        <div fxFlex="37%" fxFlex.xs="100%" >
+          <mat-form-field class="input__form" appearance="fill">
+            <mat-label class="input">Total horas semana {{session.week}} </mat-label>
+            <input type="number" disabled autocomplete="off" matInput value="0"  [(ngModel)]="hours.TOTALHOURSWEEK" name="TOTALHOURSWEEK"/>
             <mat-icon matSuffix>timer</mat-icon>
           </mat-form-field>
         </div>
         <div fxFlex="33.33%" fxFlex.xs="100%" >
           <mat-form-field class="input__form" appearance="fill">
             <mat-label class="input">horas normales</mat-label>
-            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <input type="number" disabled autocomplete="off" matInput value="0" [(ngModel)]="hours.NORMALHOURS" name="NORMALHOURS"/>
             <mat-icon matSuffix>timer</mat-icon>
           </mat-form-field>
         </div>
         <div fxFlex="33.33%" fxFlex.xs="100%" >
           <mat-form-field class="input__form" appearance="fill">
             <mat-label class="input">horas nocturnas</mat-label>
-            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <input type="number" disabled autocomplete="off" matInput value="0" [(ngModel)]="hours.NIGHTHOURS" name="NIGHTHOURS"/>
             <mat-icon matSuffix>timer</mat-icon>
           </mat-form-field>
         </div>
         <div fxFlex="33.33%" fxFlex.xs="100%" >
           <mat-form-field class="input__form" appearance="fill">
             <mat-label class="input">horas dominicales</mat-label>
-            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <input type="number" disabled autocomplete="off" matInput value="0" [(ngModel)]="hours.SUNDAYHOURS" name="SUNDAYHOURS"/>
             <mat-icon matSuffix>timer</mat-icon>
           </mat-form-field>
         </div>
         <div fxFlex="33.33%" fxFlex.xs="100%" >
           <mat-form-field class="input__form" appearance="fill">
             <mat-label class="input">horas normales extra</mat-label>
-            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <input type="number" disabled autocomplete="off" matInput value="0" [(ngModel)]="hours.NORMALHOURSEXTRA" name="NORMALHOURSEXTRA"/>
             <mat-icon matSuffix>timer</mat-icon>
           </mat-form-field>
         </div>
         <div fxFlex="33.33%" fxFlex.xs="100%" >
           <mat-form-field class="input__form" appearance="fill">
             <mat-label class="input">horas nocturnas extra</mat-label>
-            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <input type="number" disabled autocomplete="off" matInput value="0" [(ngModel)]="hours.NIGHTHOURSEXTRA" name="NIGHTHOURSEXTRA"/>
             <mat-icon matSuffix>timer</mat-icon>
           </mat-form-field>
         </div>
         <div fxFlex="33.33%" fxFlex.xs="100%" >
           <mat-form-field class="input__form" appearance="fill">
             <mat-label class="input">horas dominicales extra</mat-label>
-            <input type="number" disabled autocomplete="off" matInput value="0"/>
+            <input type="number" disabled autocomplete="off" matInput value="0" [(ngModel)]="hours.SUNDAYHOURSEXTRA" name="SUNDAYHOURSEXTRA"/>
             <mat-icon matSuffix>timer</mat-icon>
           </mat-form-field>
         </div>

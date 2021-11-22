@@ -12,11 +12,20 @@ export class CalculusComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  get session(){
+  get session() {
     return this.service.session
   }
-  expansion(){
-    this.service.session.expansion = this.service.session.expansion ==false ? true : false
-   }
+  expansion() {
+    this.service.session.expansion = this.service.session.expansion == false ? true : false
+  }
+  calculate() {
+    this.service.calculator().subscribe(data => {
+      this.service.listHours = data
+      console.log(data)
+    })
+  }
+  get hours() {
+    return this.service.listHours;
+  }
 
 }

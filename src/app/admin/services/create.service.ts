@@ -20,10 +20,7 @@ export class CreateService {
     return this.http.post<Technical>(`${environment.apiUrl}${this.path}/save`, dto)
    }
    list(){
-     return this.http.post<Array<Technical>>(`${environment.apiUrl}${this.path}/find-all`,{message:"hello"})
-   }
-   findById(id:any){
-    return this.http.post<Technical>(`${environment.apiUrl}${this.path}`, id)
+     return this.http.get<Array<Technical>>(`${environment.apiUrl}${this.path}/find-all`)
    }
    update(dto: Technical) {
     return this.http.put<Technical>(`${environment.apiUrl}${this.path}/update`, dto);

@@ -20,10 +20,10 @@ export class ReportService{
     return this.http.post<Report>(`${environment.apiUrl}${this.path}/save`, dto)
    }
    list(){
-     return this.http.post<Array<Technical>>(`${environment.apiUrl}/technical/find-all`,{message:'hellow'})
+     return this.http.get<Array<Technical>>(`${environment.apiUrl}/technical/find-all`)
    }
    listReports(){
-    return this.http.post<Array<Report>>(`${environment.apiUrl}${this.path}/find-all`,{message:'hellow'})
+    return this.http.get<Array<Report>>(`${environment.apiUrl}${this.path}/find-all`)
   }
    findById(dto:any){
     return this.http.post<Report>(`${environment.apiUrl}${this.path}`, dto)
