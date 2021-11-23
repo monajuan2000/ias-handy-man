@@ -3,10 +3,12 @@ package com.ias.calculator.api.api.business;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import com.ias.calculator.api.api.entities.ReportEntity;
 import com.ias.calculator.api.api.repositories.ReportRepository;
 import com.ias.calculator.api.api.services.ReportService;
@@ -20,8 +22,7 @@ public class ReportServiceImp implements ReportService {
 
     @Autowired
     private ReportRepository reportRepository;
-    private DateFormat dateFormatHour = new SimpleDateFormat("hh:mm");
-    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     @Override
     public List<ReportEntity> findAll() {
@@ -54,72 +55,60 @@ public class ReportServiceImp implements ReportService {
     }
 
     @Override
-    public Map<String, Float> numberOfHours(Long id, String wk) throws ParseException {
-        List<ReportEntity> entities = reportRepository.findByTechnical(id);
-        Long NORMALHOURS = 0L;
-        Long NIGHTHOURS = 0L;
-        Long SUNDAYHOURS = 0L;
-        Long NORMALHOURSEXTRA = 0L;
-        Long NIGHTHOURSEXTRA = 0L;
-        Long SUNDAYHOURSEXTRA = 0L;
-        Long TOTALHOURS = 0L;
-        Long TOTALHOURSWEEK = 0L;
-
-        for (ReportEntity element : entities) {
-            Date d1 = this.dateFormatHour.parse(element.getStartHour());
-            Date d2 = this.dateFormatHour.parse(element.getFinalHour());
-            TOTALHOURS += ((d2.getTime() - d1.getTime()) / (1000 * 60));
-            Date date = this.dateFormat.parse(element.getDate());
-            String week = new SimpleDateFormat("w").format(date);
-            String day = new SimpleDateFormat("EE").format(date);
-            Long result = ((d2.getTime() - d1.getTime()) / (1000 * 60));
-            if (week.equals(wk)) {
-                if (TOTALHOURSWEEK < 2880L) {
-                    if (!day.equals("dom.")) {
-                        if (d1.getHours() >= 7 && d2.getHours() <= 20) {
-                            NORMALHOURS += result;
-                            TOTALHOURSWEEK += result;
-                        } else {
-                            NIGHTHOURS += result;
-                            TOTALHOURSWEEK += result;
-                        }
-                    } else {
-                        SUNDAYHOURS += result;
-                        TOTALHOURSWEEK += result;
-                    }
-                } else {
-                    if (!day.equals("dom.")) {
-                        if (d1.getHours() >= 7 && d2.getHours() <= 20) {
-                            NORMALHOURSEXTRA += result;
-                            TOTALHOURSWEEK += result;
-                        } else {
-                            NIGHTHOURSEXTRA += result;
-                            TOTALHOURSWEEK += result;
-                        }
-                    } else {
-                        SUNDAYHOURSEXTRA += result;
-                        TOTALHOURSWEEK += result;
-                    }
-                }
-            }
-
+    public Map<String, Float> extractInf(Long id, String wk) throws ParseException {
+        List<ReportEntity> reportEntities = this.reportRepository.findByTechnical(id);
+        Map<String, Float> map = new HashMap<String, Float>();
+        Calendar calendarOne = Calendar.getInstance();
+        Calendar calendarTwo = Calendar.getInstance();
+        for (ReportEntity element : reportEntities) {
+            Date dateStartHour = this.dateFormat.parse(element.getDate() + " " + element.getStartHour());
+            Date dateFinalHour = this.dateFormat.parse(element.getDate() + " " + element.getFinalHour());
+            calendarOne.setTime(dateStartHour);
+            calendarTwo.setTime(dateFinalHour);
+            int[] numberOfHoursInMinutes = this.calculator(calendarOne, calendarTwo);
+            map = this.calculatorHours(wk, numberOfHoursInMinutes);
         }
-        return this.createMap(NORMALHOURS, NIGHTHOURS, SUNDAYHOURS, NORMALHOURSEXTRA, NIGHTHOURSEXTRA, SUNDAYHOURSEXTRA,
-                TOTALHOURS, TOTALHOURSWEEK);
+        return map;
     }
 
     @Override
-    public Map<String, Float> createMap(Long NORMALHOURS, Long NIGHTHOURS, Long SUNDAYHOURS, Long NORMALHOURSEXTRA,
-            Long NIGHTHOURSEXTRA, Long SUNDAYHOURSEXTRA, Long TOTALHOURS, Long TOTALHOURSWEEK) {
-        HashMap<String, Float> map = new HashMap<String, Float>();
-        map.put(TypeHour.NORMALHOURS.toString(), (float) (NORMALHOURS)/60);
-        map.put(TypeHour.NIGHTHOURS.toString(), (float) (NIGHTHOURS)/60);
-        map.put(TypeHour.SUNDAYHOURS.toString(), (float) (SUNDAYHOURS)/60);
-        map.put(TypeHour.NORMALHOURSEXTRA.toString(), (float) (NORMALHOURSEXTRA)/60);
-        map.put(TypeHour.NIGHTHOURSEXTRA.toString(), (float) (NIGHTHOURSEXTRA)/60);
-        map.put(TypeHour.SUNDAYHOURSEXTRA.toString(), (float) (SUNDAYHOURSEXTRA)/60);
-        map.put(TypeHour.TOTALHOURS.toString(), (float) (TOTALHOURS)/60);
-        map.put(TypeHour.TOTALHOURSWEEK.toString(), (float) (TOTALHOURSWEEK)/60);
+    public int[] calculator(Calendar calendarOne, Calendar calendarTwo) {
+        int[] numberOfHoursInMinutes = new int[6];
+        int dateStartMinutes = calendarOne.get(Calendar.HOUR_OF_DAY) * 60;
+        int dateFinalMinutes = calendarTwo.get(Calendar.HOUR_OF_DAY) * 60;
+        int dateStartMinutesMax = calendarOne.get(Calendar.MINUTE);
+        int dateFinalMinutesMax = calendarTwo.get(Calendar.MINUTE);
+        int week = calendarTwo.get(Calendar.WEEK_OF_YEAR);
+        int weekDay = calendarTwo.get(Calendar.DAY_OF_WEEK);
+        numberOfHoursInMinutes[0] = dateStartMinutes;
+        numberOfHoursInMinutes[1] = dateStartMinutesMax;
+        numberOfHoursInMinutes[2] = dateFinalMinutes;
+        numberOfHoursInMinutes[3] = dateFinalMinutesMax;
+        numberOfHoursInMinutes[4] = week;
+        numberOfHoursInMinutes[5] = weekDay;
+        return numberOfHoursInMinutes;
+    }
+
+    @Override
+    public Map<String, Float> calculatorHours(String wk, int[] numberOfHoursInMinutes) throws ParseException {
+        Map<String, Float> map = new HashMap<String, Float>();
+        String week = String.valueOf(numberOfHoursInMinutes[4]);
+        Float NORMALHOURS = (float) 0;
+        Float NIGHTHOURS = (float) 0;
+        Float SUNDAYHOURS = (float) 0;
+        // Float NORMALHOURSEXTRA = null;
+        // Float NIGHTHOURSEXTRA = null;
+        // Float SUNDAYHOURSEXTRA = null;
+        Float TOTALHOURS = (float) 0;
+        Float TOTALHOURSWEEK = (float) 0;
+        if (wk.equals(week)) {
+            
+        } else {
+            System.out.println("No hay registros para mostrar");
+        }
+        map.put(TypeHour.NORMALHOURS.toString(), NORMALHOURS);
+        map.put(TypeHour.NIGHTHOURS.toString(), NIGHTHOURS);
+        map.put(TypeHour.SUNDAYHOURS.toString(), SUNDAYHOURS);
         return map;
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TechnicalServiceImp implements TechnicalService {
@@ -20,8 +21,8 @@ public class TechnicalServiceImp implements TechnicalService {
     }
 
     @Override
-    public TechnicalEntity findById(Long id) {
-        return this.technicalRepository.findById(id).orElseThrow();
+    public Optional<TechnicalEntity> findById(Long id) {
+        return this.technicalRepository.findById(id);
     }
 
     @Override

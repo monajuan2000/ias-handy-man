@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TechnicalControllers {
@@ -43,5 +44,10 @@ public class TechnicalControllers {
     @GetMapping(value = "/api/v1/technical/findByCC/{cc}")
     public TechnicalEntity findByCC(@PathVariable String cc){
         return technicalService.findByCC(cc);
+    }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping(value = "/api/v1/technical/findById/{id}")
+    public TechnicalEntity findById(@PathVariable Long id){
+        return technicalService.findById(id).get();
     }
 }

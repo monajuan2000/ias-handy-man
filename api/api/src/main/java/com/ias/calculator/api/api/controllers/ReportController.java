@@ -29,7 +29,7 @@ public class ReportController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/api/v1/reports/hours/{id}/{wk}")
     public Map<String, Float> numberOfHours(@PathVariable("id") Long id, @PathVariable("wk") String wk) throws ParseException{
-        return reportService.numberOfHours(id,wk);
+        return reportService.extractInf(id, wk);
     }
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(value = "/api/v1/reports/update")
