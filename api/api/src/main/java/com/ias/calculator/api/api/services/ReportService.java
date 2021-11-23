@@ -17,4 +17,6 @@ public interface ReportService {
     Map<String, Float> extractInf(Long id,String wk) throws ParseException;
     int[] calculator(Calendar calendarOne, Calendar calendarTwo);
     Map<String, Float> calculatorHours(String wk, int[]numberOfHoursInMinutes) throws ParseException;
+    Map<String, Float> calculatorHoursExtra(String wk, int[]numberOfHoursInMinutes) throws ParseException;
+    
 }
