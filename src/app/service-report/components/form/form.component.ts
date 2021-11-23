@@ -53,8 +53,8 @@ export class FormComponent implements OnInit {
     msn += this.service.report.date == '' ? ' Debe especificar la fecha, ' : '',
     msn += this.service.report.order == '' ? ' Debe especificar el número de la orden,' : '',
     msn += this.service.report.order == '' ? ' Debe especificar la hora de inicio,' : '',
-    msn += this.service.report.order == '' ? ' Debe especificar la hora de cierre' : '',
-    msn += this.service.report.startHour > this.service.report.finalHour ? ' La hora de inicio debe ser menor a la hora de cierre' : ''
+    msn += this.service.report.order == '' ? ' Debe especificar la hora de cierre' : ''
+    
     return msn
   }
 }
