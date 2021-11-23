@@ -52,9 +52,10 @@ export class FormComponent implements OnInit {
     msn += this.service.technical.name == '' ? ' Debe especificar la cédula del técnico,' : '',
     msn += this.service.report.date == '' ? ' Debe especificar la fecha, ' : '',
     msn += this.service.report.order == '' ? ' Debe especificar el número de la orden,' : '',
-    msn += this.service.report.order == '' ? ' Debe especificar la hora de inicio,' : '',
-    msn += this.service.report.order == '' ? ' Debe especificar la hora de cierre' : ''
-    
+    msn += this.service.report.startHour == '' ? ' Debe especificar la hora de inicio,' : '',
+    msn += this.service.report.finalHour == '' ? ' Debe especificar la hora de cierre' : ''
+    msn += this.service.report.startHour>this.service.report.finalHour ? 'la hora final debe ser mayor a la hora inicial' : ''
+    console.log(this.service.report.startHour)
     return msn
   }
 }
