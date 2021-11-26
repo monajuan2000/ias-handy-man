@@ -1,0 +1,40 @@
+<div class="container bg-background">
+  <mat-card class="container__view bg-gray-transparent">
+    <div
+      fxLayout="row wrap"
+      fxLayoutGap="16px grid"
+      class="container__view__cards"
+    >
+      <div fxFlex="100%" fxFlex.xs="100%" class="card__two">
+        <mat-card>
+          <div
+            fxLayout="row wrap"
+            fxLayoutGap="16px grid"
+            class="container__view__cards"
+          >
+            <mat-toolbar class="title bg-gray">
+              Cálculo horas de servicio para {{ session.name }}
+            </mat-toolbar>
+            <div fxFlex="50%" fxFlex.xs="100%" class="card__two">
+              <app-reports-by-technical></app-reports-by-technical>
+            </div>
+            <div fxFlex="50%" fxFlex.xs="100%" class="card__two">
+              <div
+                fxLayout="row wrap"
+                fxLayoutGap="16px grid"
+                class="container__view__cards"
+              >
+                <div fxFlex="100%" fxFlex.xs="100%" class="card__two" id="last__card">
+                  <app-inf-calculus></app-inf-calculus>
+                </div>
+                <div fxFlex="100%" fxFlex.xs="100%" class="card__two" id="last__card">
+                  <app-calculus></app-calculus>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </mat-card>
+</div>
