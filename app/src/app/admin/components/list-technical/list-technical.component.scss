@@ -1,0 +1,37 @@
+.title{
+    color: white;
+    font-family: 'italic';
+    justify-content: center;
+    border-radius: 10px;
+}
+.icon{
+    margin-left: 5px;
+}
+.container__table__data{
+    max-height: 385px;
+    overflow: auto;
+}
+.table{
+    width: 100%;
+    
+}
+.column{
+    position: sticky;
+    color: black;
+    font-size: 15px;
+}
+#name_1{
+    padding-left: 30px;
+}
+#name_2{
+    padding-left: 10px;
+}
+.delete{
+   color: red; 
+}
+@media (max-width:430px) {
+    #name_3 {
+  padding-left: 20px;
+  
+}
+}
